@@ -8,8 +8,8 @@ import { CharactersPage } from "./pages/CharactersPage/CharactersPage"
 function App() {
   return (
     <div>
+      <Header/>
       <Routes>
-        <Header/>
         <Route path="/" element={<HomePage />}/> 
         <Route path="/episodes" element={<EpisodesPage/>}/>
         <Route path="/locations" element={<LocationsPage/>}/>
