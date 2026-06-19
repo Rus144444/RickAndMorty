@@ -1,7 +1,9 @@
 function App() {
 
-  return (
-     <div>Hello world</div>
+  return (<div>
+    <div>Hello world</div>
+    <div>Hello world</div>
+  </div>
   )
 }
 
