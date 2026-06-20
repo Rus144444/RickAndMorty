@@ -1,0 +1,22 @@
+.title {
+  margin: 0;
+  color: #1e293b;
+  font-weight: 900;
+  font-size: 100px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.linkWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.mainWrapper {
+  background:
+    linear-gradient(var(--slate-200), var(--slate-200-20)), url("../src/assets/img/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}

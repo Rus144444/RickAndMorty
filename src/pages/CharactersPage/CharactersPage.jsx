@@ -1,5 +1,7 @@
+import s from "./CharactersPage.module.css"
+
 export const CharactersPage = () => {
     return (
-        <div>CharactersPage</div>
+        <div className={s.title}>CharactersPage</div>
     )
 }
