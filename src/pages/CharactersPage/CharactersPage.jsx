@@ -5,12 +5,34 @@ import s from "./CharactersPage.module.css"
 
  
 export const CharactersPage = () => {
-  const [characters, setCharacters] = useState([])
+    const [characters, setCharacters] = useState([])
+    const [info, setInfo] = useState({
+        count: 0,
+        pages: 0,
+        next: null,
+        prev: null,
+    })
+
   useEffect(() => {
     axios.get("https://rickandmortyapi.com/api/character").then((res) => {
       setCharacters(res.data.results)
+      setInfo(res.data.info)
     })
   }, [])
+
+    const nextPageHandler = () => {
+        axios.get(info.next).then((res) => {
+        setCharacters(res.data.results)
+        setInfo(res.data.info)
+        })
+    }
+ 
+    const previousPageHandler = () => {
+        axios.get(info.prev).then((res) => {
+        setCharacters(res.data.results)
+        setInfo(res.data.info)
+        })
+    }
  
   return (
     <div className="pageContainer">
@@ -24,6 +46,14 @@ export const CharactersPage = () => {
        })
       )}
       </ul>
+       <div className={s.buttonContainer}>
+            <button className="linkButton" onClick={previousPageHandler}>
+              Назад
+            </button>
+            <button className="linkButton" onClick={nextPageHandler}>
+              Вперед
+            </button>
+        </div>
     </div>
   )
 }
