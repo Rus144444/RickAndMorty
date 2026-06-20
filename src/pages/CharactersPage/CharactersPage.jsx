@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import axios from "axios"
 import s from "./CharactersPage.module.css"
 
+
  
 export const CharactersPage = () => {
     const [characters, setCharacters] = useState([])
@@ -13,6 +14,16 @@ export const CharactersPage = () => {
         prev: null,
     })
 
+    const [error, setError] = useState(null)
+ 
+  const fetchData = (url) => {
+    axios.get(url).then((res) => {
+      setCharacters(res.data.results)
+      setInfo(res.data.info)
+    })
+  }
+ 
+
   useEffect(() => {
     axios.get("https://rickandmortyapi.com/api/character").then((res) => {
       setCharacters(res.data.results)
@@ -20,37 +31,37 @@ export const CharactersPage = () => {
     })
   }, [])
 
-    const nextPageHandler = () => {
-        axios.get(info.next).then((res) => {
-        setCharacters(res.data.results)
-        setInfo(res.data.info)
-        })
+    const searchHandler = (event) => {
+        const value = event.currentTarget.value
+        fetchData(`https://rickandmortyapi.com/api/character?name=${value}`)
     }
+
+  const nextPageHandler = () => {
+    fetchData(info.next)
+  }
  
-    const previousPageHandler = () => {
-        axios.get(info.prev).then((res) => {
-        setCharacters(res.data.results)
-        setInfo(res.data.info)
-        })
-    }
+  const previousPageHandler = () => {
+    fetchData(info.prev)
+  }
  
   return (
     <div className="pageContainer">
-      <h1 className={"pageTitle"}>CharacterPage</h1>
+      <h1 className="pageTitle">CharacterPage</h1>
+      <input type="search" className={s.search} onChange={searchHandler} placeholder="Search..." />
+      {error && <div className={s.errorMessage}>{error}</div>}
       <ul className={s.characters}>
-       {characters.length && ( characters.map((character) => {
+        {characters?.map((character) => {
         return(<div key={character.id} className={s.character}>
           <div className={s.characterLink}>{character.name}</div>
           <img src={character.image} alt={`${character.name} avatar`} />
         </div>)
-       })
-      )}
+       })}
       </ul>
        <div className={s.buttonContainer}>
-            <button className="linkButton" onClick={previousPageHandler}>
+            <button className="linkButton" onClick={previousPageHandler} disabled={info.next === null}>
               Назад
             </button>
-            <button className="linkButton" onClick={nextPageHandler}>
+            <button className="linkButton" onClick={nextPageHandler} disabled={info.next === null} >
               Вперед
             </button>
         </div>
