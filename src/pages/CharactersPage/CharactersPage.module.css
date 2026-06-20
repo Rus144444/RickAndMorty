@@ -1,8 +1,25 @@
-.title {
-  margin: 0;
-  color: #1e293b;
-  font-weight: 900;
-  font-size: 70px;
+.characters {
+  display: flex;
+  flex-wrap: wrap;
+}
+ 
+.character {
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  background-color: var(--slate-700);
+  border-radius: 5px;
+}
+ 
+.characterLink {
+  color: var(--slate-50);
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 10px;
+  display: block;
   text-align: center;
-  padding-top: 50px;
+ 
+  &:hover {
+    text-decoration: none;
+  }
 }
