@@ -55,8 +55,7 @@ export const CharactersPage = () => {
       <ul className={s.characters}>
         {!error && characters?.map((character) => {
         return(<div key={character.id} className={s.character}>
-          <div className={s.characterLink}>{character.name}</div>
-          <Link to={`/characters/${character.id}`} className={s.characterLink} >{character.name}</Link>
+          <Link to={`/RickAndMorty/characters/${character.id}`} className={s.characterLink} >{character.name}</Link>
           <img src={character.image} alt={`${character.name} avatar`} />
         </div>)
        })}

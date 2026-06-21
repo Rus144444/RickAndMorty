@@ -86,7 +86,7 @@ export const Character = () => {
                 </div>
 
                 <Link
-                    to="/characters"
+                    to="/RickAndMorty/characters"
                     className={s.backButton}
                 >
                     ← Go Back

@@ -4,6 +4,7 @@ import { HomePage } from "./pages/HomePage/HomePage"
 import { EpisodesPage } from "./pages/EpisodesPage/EpisodesPage"
 import { LocationsPage } from "./pages/LocationsPage/LocationsPage"
 import { CharactersPage } from "./pages/CharactersPage/CharactersPage"
+import { Character } from "./pages/CharactersPage/Character/Character"
  
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/RickAndMorty" element={<HomePage />}/> 
         <Route path="/RickAndMorty/episodes" element={<EpisodesPage/>}/>
+        <Route  path="/RickAndMorty/characters/:id" element={<Character />}/>
         <Route path="/RickAndMorty/locations" element={<LocationsPage/>}/>
         <Route path="/RickAndMorty/characters" element={<CharactersPage/>}/>
       </Routes>
