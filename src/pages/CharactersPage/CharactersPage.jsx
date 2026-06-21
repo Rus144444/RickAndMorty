@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import axios from "axios"
 import s from "./CharactersPage.module.css"
+import { Link } from "react-router"
 
 
  
@@ -19,7 +20,11 @@ export const CharactersPage = () => {
         axios.get(url).then((res) => {
         setCharacters(res.data.results)
         setInfo(res.data.info)
+        setError(null)
         })
+        .catch((err) => {
+        setError(err.response.data.error)
+      })
     }
  
     const nextPageHandler = () => {
@@ -48,9 +53,10 @@ export const CharactersPage = () => {
       <input type="search" className={s.search} onChange={searchHandler} placeholder="Search..." />
       {error && <div className={s.errorMessage}>{error}</div>}
       <ul className={s.characters}>
-        {characters?.map((character) => {
+        {!error && characters?.map((character) => {
         return(<div key={character.id} className={s.character}>
           <div className={s.characterLink}>{character.name}</div>
+          <Link to={`/characters/${character.id}`} className={s.characterLink} >{character.name}</Link>
           <img src={character.image} alt={`${character.name} avatar`} />
         </div>)
        })}

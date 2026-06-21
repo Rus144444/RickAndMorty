@@ -10,10 +10,10 @@ function App() {
     <div>
       <Header/>
       <Routes>
-        <Route path="/" element={<HomePage />}/> 
-        <Route path="/episodes" element={<EpisodesPage/>}/>
-        <Route path="/locations" element={<LocationsPage/>}/>
-        <Route path="/characters" element={<CharactersPage/>}/>
+        <Route path="/RickAndMorty" element={<HomePage />}/> 
+        <Route path="/RickAndMorty/episodes" element={<EpisodesPage/>}/>
+        <Route path="/RickAndMorty/locations" element={<LocationsPage/>}/>
+        <Route path="/RickAndMorty/characters" element={<CharactersPage/>}/>
       </Routes>
     </div>
   )
