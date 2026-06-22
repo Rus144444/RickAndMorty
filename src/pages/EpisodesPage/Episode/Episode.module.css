@@ -1,0 +1,11 @@
+.pageContainer {
+    width: 1400px;
+    margin: 0 auto 50px;
+}
+
+.container {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--slate-700);
+    border-radius: 10px;
+}

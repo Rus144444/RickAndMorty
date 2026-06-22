@@ -40,7 +40,7 @@ export const EpisodesPage = () => {
     <div>
       <h1 className={s.title}>EpisodesPage</h1>
         {episodes && episodes.map((episode) => {return<ul className="list" key={episode.id}>
-        <Link to={`/RickAndMorty/episodes${episode.id}`}>{episode.name}</Link>
+        <Link to={`/RickAndMorty/episodes/${episode.id}`}>{episode.name}</Link>
         <li className="item">{episode.air_date}</li>
         <li className="item">{episode.episode}</li>
         <li className="item">{episode.url}</li>
