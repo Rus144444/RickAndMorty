@@ -43,12 +43,12 @@ const previousPageHandler = () => {
     <div>
       <h1 className="pageTitle" >LocationsPage</h1>
 
-        {locations && locations.map((location) => {return<ul className={s.item} key={location.id}>
+        {locations && locations.map((location) => {return<ul className="list" key={location.id}>
         <Link to={`/RickAndMorty/locations/${location.id}`}>{location.name}</Link>
-        <li>{location.dimension}</li>
-        <li>{location.type}</li>
-        <li>{location.url}</li>
-        <li>{location.created}</li>
+        <li className="item">{location.dimension}</li>
+        <li className="item">{location.type}</li>
+        <li className="item">{location.url}</li>
+        <li className="item">{location.created}</li>
         <hr/>
       </ul>})}
       <div className="buttonContainer">
