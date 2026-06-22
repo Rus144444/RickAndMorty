@@ -32,15 +32,11 @@ useEffect(() => {
   }
 
   const nextPageHandler = () => {
-  if (info.next) {
     fetchData(info.next)
   }
-}
 
 const previousPageHandler = () => {
-  if (info.prev) {
     fetchData(info.prev)
-  }
 }
 
   return (
@@ -56,10 +52,10 @@ const previousPageHandler = () => {
         <hr/>
       </ul>})}
       <div className="buttonContainer">
-          <button className="linkButton" onClick={previousPageHandler} >
+          <button className="linkButton" onClick={previousPageHandler} disabled={info.prev === null}>
             Назад
           </button>
-          <button className="linkButton" onClick={nextPageHandler} >
+          <button className="linkButton" onClick={nextPageHandler} disabled={info.next === null}>
             Вперед
           </button>
       </div>
