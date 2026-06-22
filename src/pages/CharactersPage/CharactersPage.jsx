@@ -60,7 +60,7 @@ export const CharactersPage = () => {
         </div>)
        })}
       </ul>
-       <div className={s.buttonContainer}>
+       <div className="buttonContainer">
             <button className="linkButton" onClick={previousPageHandler} disabled={info.next === null}>
               Назад
             </button>

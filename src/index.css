@@ -29,6 +29,12 @@ body {
   padding-top: 100px;
 }
  
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
 /* Common elements */
 .linkButton {
   margin: 10px;
