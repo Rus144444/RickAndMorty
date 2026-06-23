@@ -1,8 +1,10 @@
 import { Link } from "react-router";
+import { useCharacter } from "../../../../BLL/useCharacter"
 import s from "./Charecter.module.css";
 
+
 export const Character = () => {
-    const [character] = useCharacter()
+    const { character } = useCharacter()
     if (!character) {
         return (
             <div className={s.pageContainer}>
