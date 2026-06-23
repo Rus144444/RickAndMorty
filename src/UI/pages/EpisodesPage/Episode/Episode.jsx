@@ -1,15 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link,} from "react-router";
+import { useEpisode } from "../../../../BLL/useEpisode";
 import s from "./Episode.module.css"
 
 export const Episode = () => {
-    const [item, setItem] = useState()
-    const { id } = useParams();
-    useEffect(()=>{
-        axios.get(`https://rickandmortyapi.com/api/episode/${id}`).then((res) => setItem(res.data))
-    }, [])
-
+    const { item } = useEpisode()
     if(!item) return
     return (
         <div className={s.pageContainer}>
