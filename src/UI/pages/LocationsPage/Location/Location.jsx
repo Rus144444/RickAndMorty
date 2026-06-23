@@ -20,8 +20,7 @@ export const Location = () => {
                     <li>{item.dimension}</li>
                     <li>{item.url}</li>
                     <li>{item.created}</li>
-                    <ol>{item.residents.map((resident, index) => 
-                        <li key={index}>{resident}</li>
+                    <ol>{item.residents.map((resident, index) => <li key={index}>{resident}</li>
                     )}</ol>
                 </ul>       
                 <div className="buttonContainer">

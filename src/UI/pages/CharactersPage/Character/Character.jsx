@@ -3,6 +3,10 @@ import axios from "axios";
 import { Link, useParams } from "react-router";
 import s from "./Charecter.module.css";
 
+// const useCharacter = () => {
+
+// }
+
 export const Character = () => {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
