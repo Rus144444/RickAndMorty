@@ -1,24 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 import s from "./Charecter.module.css";
-
-const useCharacter = () => {
-  const { id } = useParams();
-    const [character, setCharacter] = useState(null);
-
-    useEffect(() => {
-        axios
-            .get(`https://rickandmortyapi.com/api/character/${id}`)
-            .then((res) => {
-                setCharacter(res.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }, [id]);
-    return {character}
-}
 
 export const Character = () => {
     const [character] = useCharacter()
