@@ -1,4 +1,4 @@
-import axios from "axios"
+import {fetchDataUrl} from "../DAL/api"
 import { useEffect, useState } from "react"
 
 export const useEpisodesPage = () => {
@@ -11,7 +11,7 @@ export const useEpisodesPage = () => {
   })
 
   useEffect(()=>{
-    axios.get("https://rickandmortyapi.com/api/episode")
+    fetchDataUrl("https://rickandmortyapi.com/api/episode")
     .then((res)=> {res.data 
       setEpisodes(res.data.results)
       setInfo(res.data.info)
@@ -19,7 +19,7 @@ export const useEpisodesPage = () => {
   },[])
 
   const fetchData = (url) => {
-    axios.get(url).then((res) => {
+    fetchDataUrl(url).then((res) => {
       setEpisodes(res.data.results)
       setInfo(res.data.info)
     })

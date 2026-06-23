@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import {fetchDataUrl} from "../DAL/api"
 
 export const useLocationsPage = () => {
   const [locations, setLocations] = useState()
@@ -11,7 +11,7 @@ export const useLocationsPage = () => {
     })
 
 useEffect(() => {
-  const promis = axios.get("https://rickandmortyapi.com/api/location")
+  const promis = fetchDataUrl("https://rickandmortyapi.com/api/location")
   .then((res) => {
     res.data.results
     setLocations(res.data.results)
@@ -21,7 +21,8 @@ useEffect(() => {
 },[])
 
   const fetchData = (url) => {
-      axios.get(url).then((res) => {
+      fetchDataUrl(url)
+      .then((res) => {
         setLocations(res.data.results)
         setInfo(res.data.info)
       })

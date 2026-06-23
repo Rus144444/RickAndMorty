@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchDataId } from "../DAL/api"
 import { useParams } from "react-router";
 
 export const useCharacter = () => {
@@ -7,12 +7,11 @@ export const useCharacter = () => {
     const [character, setCharacter] = useState(null);
 
     useEffect(() => {
-        axios
-            .get(`https://rickandmortyapi.com/api/character/${id}`)
-            .then((res) => {
+        fetchDataId("https://rickandmortyapi.com/api/character", id)
+        .then((res) => {
                 setCharacter(res.data);
             })
-            .catch((err) => {
+        .catch((err) => {
                 console.error(err);
             });
     }, [id]);

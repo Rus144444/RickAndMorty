@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
+import { fetchDataUrl } from "../DAL/api"
+
 
 export const useCharactersPage = () => {
    const [characters, setCharacters] = useState([])
@@ -12,7 +13,7 @@ export const useCharactersPage = () => {
     })
 
      useEffect(() => {
-        axios.get("https://rickandmortyapi.com/api/character").then((res) => {
+        fetchDataUrl("https://rickandmortyapi.com/api/character").then((res) => {
         setCharacters(res.data.results)
         setInfo(res.data.info)
         })
@@ -24,15 +25,15 @@ export const useCharactersPage = () => {
     }
 
     const fetchData = (url) => {
-        axios.get(url).then((res) => {
+    fetchDataUrl(url)
+    .then((res) => {
         setCharacters(res.data.results)
         setInfo(res.data.info)
         setError(null)
-        })
-        .catch((err) => {
-        setError(err.response.data.error)
-      })
-    }
+    })
+    .catch((err) => {
+        setError(err.response.data.error)})
+}
 
     const nextPageHandler = () => {
         fetchData(info.next)
@@ -44,6 +45,6 @@ export const useCharactersPage = () => {
     }
 
   return {
-        characters,  error, info, searchHandler, fetchData, previousPageHandler, nextPageHandler
+        characters,  error, info, searchHandler, previousPageHandler, nextPageHandler
       }
 }
