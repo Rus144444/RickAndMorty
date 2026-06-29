@@ -1,5 +1,5 @@
 import axios from "axios"
-// import { LocationsResponse, LocationType } from "../types/location"
+// import { LocationsResponse, LocationType } from "../types/location"git commit -m "feat: add episode API requests"
 const url = "https://rickandmortyapi.com/api/episode"
 
 export const fetchEpisodeById = async (id: string) => {
