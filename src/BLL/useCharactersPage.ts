@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import { fetchDataUrl } from "../DAL/api"
+import type { CharactersType } from "../types/character"
+import type { InfoType } from "../types/location"
 
 const urlCharacters = "https://rickandmortyapi.com/api/character"
 
 export const useCharactersPage = () => {
-   const [characters, setCharacters] = useState([])
+   const [characters, setCharacters] = useState<CharactersType[]>([])
     const [error, setError] = useState(null)
-    const [info, setInfo] = useState({
+    const [info, setInfo] = useState<InfoType>({
         count: 0,
         pages: 0,
         next: null,
@@ -37,11 +39,15 @@ export const useCharactersPage = () => {
     }
 
     const nextPageHandler = () => {
-        fetchData(info.next)
+        if(info.next){
+            fetchData(info.next)
+        }
     }
  
     const previousPageHandler = () => {
-        fetchData(info.prev)   
+        if(info.prev){
+            fetchData(info.prev)   
+        }
     }
 
   return {
