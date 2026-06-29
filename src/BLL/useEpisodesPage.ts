@@ -1,9 +1,13 @@
-import {fetchDataUrl} from "../DAL/api"
+import {fetchEpisodeUrl} from "../DAL/episode"
 import { useEffect, useState } from "react"
+import { EpisodeType } from "../types/episode"
+import { InfoType} from "../types/location"
+
+const urlEpisode = "https://rickandmortyapi.com/api/episode"
 
 export const useEpisodesPage = () => {
-  const [episodes, setEpisodes] = useState()
-  const [info, setInfo] = useState({
+  const [episodes, setEpisodes] = useState<EpisodeType[]>([])
+  const [info, setInfo] = useState<InfoType>({
       count: 0,
       pages: 0,
       next: null,
@@ -11,27 +15,33 @@ export const useEpisodesPage = () => {
   })
 
   useEffect(()=>{
-    fetchDataUrl("https://rickandmortyapi.com/api/episode")
-    .then((res)=> {res.data 
-      setEpisodes(res.data.results)
-      setInfo(res.data.info)
+  (urlEpisode)
+    fetchEpisodeUrl(urlEpisode)
+    .then((data) => {
+      setEpisodes(data.results)
+      setInfo(data.info)
     })
   },[])
 
-  const fetchData = (url) => {
-    fetchDataUrl(url).then((res) => {
-      setEpisodes(res.data.results)
-      setInfo(res.data.info)
+  const fetchData = (url: string) => {
+    fetchEpisodeUrl (url)
+    .then((data) => {
+      setEpisodes(data.results)
+      setInfo(data.info)
     })
     .catch((err) => console.log(err))
   }
 
   const nextPageHandler = () => {
-    fetchData(info.next)
+      if(info.next){
+        fetchData(info.next)
+      }
   }
 
   const previousPageHandler = () => {
-    fetchData(info.prev)
+      if(info.prev){
+        fetchData(info.prev)
+      } 
   }
 
   return {info, episodes, nextPageHandler, previousPageHandler}
