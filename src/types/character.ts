@@ -22,5 +22,5 @@ export type CharactersType = {
 
 export type CharactersRespons = {
     info: InfoType;
-    results: CharactersType;
+    results: CharactersType[]
 }

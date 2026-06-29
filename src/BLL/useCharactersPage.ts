@@ -2,12 +2,13 @@ import { useState, useEffect } from "react"
 import { fetchDataUrl } from "../DAL/api"
 import type { CharactersType } from "../types/character"
 import type { InfoType } from "../types/location"
+import { fetchCharactersUrl } from "../DAL/character"
 
 const urlCharacters = "https://rickandmortyapi.com/api/character"
 
 export const useCharactersPage = () => {
    const [characters, setCharacters] = useState<CharactersType[]>([])
-    const [error, setError] = useState(null)
+    const [error, setError] = useState <string | null>(null)
     const [info, setInfo] = useState<InfoType>({
         count: 0,
         pages: 0,
@@ -16,9 +17,9 @@ export const useCharactersPage = () => {
     })
 
      useEffect(() => {
-        fetchDataUrl(urlCharacters).then((res) => {
-        setCharacters(res.data.results)
-        setInfo(res.data.info)
+        fetchCharactersUrl(urlCharacters).then((data) => {
+        setCharacters(data.results)
+        setInfo(data.info)
         })
     }, [])
 
@@ -27,7 +28,7 @@ export const useCharactersPage = () => {
         fetchData(`${urlCharacters}?name=${value}`)
     }
 
-    const fetchData = (url) => {
+    const fetchData = (url: string) => {
     fetchDataUrl(url)
     .then((res) => {
         setCharacters(res.data.results)
