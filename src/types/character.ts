@@ -5,7 +5,7 @@ type Orgin = {
     url: string;
 }
 
-type CharactersType = {
+export type CharactersType = {
     id: number;
     name: string;
     status:string;
@@ -20,7 +20,7 @@ type CharactersType = {
     created: string;
 }
 
-type CharactersRespons = {
+export type CharactersRespons = {
     info: InfoType;
     results: CharactersType;
 }
