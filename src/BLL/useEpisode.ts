@@ -1,13 +1,17 @@
-import {fetchDataId} from "../DAL/api"
+import {fetchEpisodeById} from "../DAL/episode"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { EpisodeType } from "../types/episode";
 
 
 export const useEpisode = () => {
-    const [item, setItem] = useState()
-    const { id } = useParams();
+    const [item, setItem] = useState<EpisodeType| null>(null)
+    const { id } = useParams<{id: string}>();
     useEffect(()=>{
-        fetchDataId("https://rickandmortyapi.com/api/episode", id).then((res) => setItem(res.data))
+         if(!id) return
+        fetchEpisodeById(id)
+        .then((data) => setItem(data))
+        .catch((err) => console.error(err));
     }, [])
     return { item }
 }
