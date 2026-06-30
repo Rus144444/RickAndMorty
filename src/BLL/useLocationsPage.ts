@@ -5,6 +5,7 @@ const urlLocatin = "https://rickandmortyapi.com/api/location"
 
 export const useLocationsPage = () => {
   const [locations, setLocations] = useState<LocationType[]>([])
+  const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<InfoType>({
         count: 0,
         pages: 0,
@@ -13,9 +14,8 @@ export const useLocationsPage = () => {
     })
 
 useEffect(() => {
-  const promis = fetchLocatinUrl(urlLocatin)
+  fetchLocatinUrl(urlLocatin)
   .then((data) => {
-    data.results
     setLocations(data.results)
     setInfo(data.info)
   })
@@ -28,7 +28,7 @@ useEffect(() => {
         setLocations(data.results)
         setInfo(data.info)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => setError(err))
   }
 
   const nextPageHandler = () => {
@@ -42,5 +42,5 @@ useEffect(() => {
         fetchData(info.prev)
       }
   }
-  return {locations, previousPageHandler, nextPageHandler, info}
+  return {locations, previousPageHandler, nextPageHandler, info, error}
 }
