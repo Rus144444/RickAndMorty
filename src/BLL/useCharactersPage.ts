@@ -23,7 +23,7 @@ export const useCharactersPage = () => {
         })
     }, [])
 
-     const searchHandler = (event) => {
+     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.currentTarget.value
         fetchData(`${urlCharacters}?name=${value}`)
     }
